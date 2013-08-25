@@ -6,7 +6,7 @@ Flickr Widget with Vanilla JS. Example [here](http://www.pinceladasdaweb.com.br/
 ![](https://raw.github.com/pinceladasdaweb/FlickrJS/master/widget/assets/img/screenshot.jpg)
 
 ##Usage
-1. Add the code below to your HTML, where the latest tweets should appear:
+1. Add the code below to your HTML, where the latest photos should appear:
 ```html
 <ul id="flickr"></ul>
 ```
