@@ -1,7 +1,7 @@
 FlickrJS Widget
 =================
 
-Flickr Widget with Vanilla JS
+Flickr Widget with Vanilla JS. Example [here](http://www.pinceladasdaweb.com.br/blog/uploads/flickr/widget/)
 
 ![](https://raw.github.com/pinceladasdaweb/FlickrJS/master/widget/assets/img/screenshot.jpg)
 
