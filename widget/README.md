@@ -3,6 +3,8 @@ FlickrJS Widget
 
 Flickr Widget with Vanilla JS
 
+![](https://raw.github.com/pinceladasdaweb/FlickrJS/master/widget/assets/img/screenshot.jpg)
+
 ##Usage
 1. Add the code below to your HTML, where the latest tweets should appear:
 ```html
