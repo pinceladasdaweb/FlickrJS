@@ -64,7 +64,7 @@ var Flickr = (function (d) {
             li.appendChild(a);
             elements.appendChild(li);
 
-            container.appendChild(elements);
+            container.appendChild(elements.cloneNode(true));
         },
         fetch: function () {
             var self = this;
