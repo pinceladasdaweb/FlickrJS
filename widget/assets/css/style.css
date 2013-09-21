@@ -18,6 +18,10 @@ body, ul, li, h2 {
     margin: 20px auto;
     width: 300px;
 }
+.widget.loading {
+    background: #55bc75 url('img/loading.gif') no-repeat center center;
+    min-height: 330px;
+}
 h2 {
     color: #fff;
     font: 18px/50px "pt mono";

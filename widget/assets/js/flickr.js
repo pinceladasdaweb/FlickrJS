@@ -28,9 +28,26 @@ var Flickr = (function (d) {
             xhttp.send(options.data);
             xhttp.onreadystatechange = function () {
                 if (xhttp.status === 200 && xhttp.readyState === 4) {
-                    callback(xhttp.responseText);
+                    callback(JSON.parse(xhttp.responseText));
                 }
             };
+        },
+        hasClass: function (el, name) {
+            return new RegExp('(\\s|^)' + name + '(\\s|$)').test(el.className);
+        },
+        addClass: function (el, name) {
+            var self = this;
+
+            if (!self.hasClass(el, name)) {
+                el.className += (el.className ? ' ' : '') + name;
+            }
+        },
+        removeClass: function (el, name) {
+            var self = this;
+
+            if (self.hasClass(el, name)) {
+                el.className = el.className.replace(new RegExp('(\\s|^)' + name + '(\\s|$)'), ' ').replace(/^\s+|\s+$/g, '');
+            }
         },
         getPhoto: function (photo, size) {
             size = size || '';
@@ -51,6 +68,25 @@ var Flickr = (function (d) {
             }
             return el;
         },
+        loading: function () {
+            var self      = this,
+                container = d.querySelectorAll(self.container), i, len;
+
+            for (i = 0, len = container.length; i < len; i += 1) {
+                if (container[i].parentNode.nodeName.toLowerCase() === 'body') {
+                    return;
+                }
+                self.addClass(container[i].parentNode, 'loading');
+            }
+        },
+        joined: function() {
+            var self      = this,
+                container = d.querySelectorAll(self.container), i, len;
+
+            for (i = 0, len = container.length; i < len; i += 1) {
+                self.removeClass(container[i].parentNode, 'loading');
+            }
+        },
         attach: function (photo, url) {
             var self      = this,
                 container = d.querySelector(self.container),
@@ -70,7 +106,7 @@ var Flickr = (function (d) {
             var self = this;
 
             self.getJSON({url: self.url}, function (data) {
-                var feed  = JSON.parse(data),
+                var feed  = data || [],
                     photo = feed.photos.photo, link, url, len, i;
 
                 for (i = 0, len = photo.length; i < len; i += 1) {
@@ -83,12 +119,14 @@ var Flickr = (function (d) {
                     }
 
                     self.attach(link, url);
+                    self.joined();
                 }
             });
         },
         init: function (config) {
             module.config(config);
 
+            module.loading();
             module.fetch();
         }
     };
