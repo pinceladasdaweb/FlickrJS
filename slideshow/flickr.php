@@ -25,7 +25,7 @@ function jsonp_decode($jsonp, $assoc = false) {
     return json_decode(trim($jsonp,'();'), $assoc);
 }
 
-$apiKey = 'dd7a6d4919c544748daf45423772282b';
+$apiKey = '';
 $user   = isset($_GET['user']) ? $_GET['user'] : NULL;
 $count  = isset($_GET['count']) ? $_GET['count'] : 10;
 
