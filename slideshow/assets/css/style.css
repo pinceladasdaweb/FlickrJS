@@ -1,0 +1,54 @@
+.cf:before, .cf:after {
+  content: " ";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+body {
+    background-color: #dfe9c6;
+}
+body, ul, li, h2 {
+    margin: 0;
+    padding: 0;
+}
+.widget {
+    background-color: #55bc75;
+    box-shadow: 0px 0px 5px rgba(50, 50, 50, 0.40);
+    margin: 20px auto;
+    min-height: 383px;
+    max-width: 500px;
+}
+.widget.loading {
+    background: #55bc75 url('img/loading.gif') no-repeat center center;
+}
+h2 {
+    color: #fff;
+    font: 18px/50px "pt mono";
+    height: 50px;
+    text-align: center;
+    text-transform: uppercase;
+}
+ul {
+    position: relative;
+}
+li {
+    list-style: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+
+    -webkit-transition: opacity 1s;
+       -moz-transition: opacity 1s;
+         -o-transition: opacity 1s;
+            transition: opacity 1s;
+}
+li img {
+    display: block;
+    border: none;
+}
+li.show {
+    opacity: 1;
+    z-index: 2
+}

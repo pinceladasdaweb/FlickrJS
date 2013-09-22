@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Flickr CSS3 Slideshow</title>
+        <meta charset="utf-8">
+        <link href="http://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet" type="text/css">
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <div class="widget cf">
+            <h2>Flickr CSS3 Slideshow</h2>
+            <ul id="flickr"></ul>
+        </div>
+
+        <script src="assets/js/flickr.min.js"></script>
+        <script>
+            (function() {
+                Flickr.init({
+                    container: '#flickr',
+                    user: 'locaweb',
+                    count: 5,
+                    time: 4000
+                });
+            }());
+        </script>
+    </body>
+</html>
