@@ -32,6 +32,14 @@ var Flickr = (function (d) {
                 }
             };
         },
+        loop: function (els, callback) {
+            var i = 0, max = els.length;
+
+            while (i < max) {
+                callback(els[i], i);
+                i += 1;
+            }
+        },
         hasClass: function (el, name) {
             return new RegExp('(\\s|^)' + name + '(\\s|$)').test(el.className);
         },
@@ -70,22 +78,22 @@ var Flickr = (function (d) {
         },
         loading: function () {
             var self      = this,
-                container = d.querySelectorAll(self.container), i, len;
+                container = d.querySelectorAll(self.container);
 
-            for (i = 0, len = container.length; i < len; i += 1) {
-                if (container[i].parentNode.nodeName.toLowerCase() === 'body') {
+            self.loop(container, function (el) {
+                if (el.parentNode.nodeName.toLowerCase() === 'body') {
                     return;
                 }
-                self.addClass(container[i].parentNode, 'loading');
-            }
+                self.addClass(el.parentNode, 'loading');
+            });
         },
-        joined: function() {
+        joined: function () {
             var self      = this,
-                container = d.querySelectorAll(self.container), i, len;
+                container = d.querySelectorAll(self.container);
 
-            for (i = 0, len = container.length; i < len; i += 1) {
-                self.removeClass(container[i].parentNode, 'loading');
-            }
+            self.loop(container, function (el) {
+                self.removeClass(el.parentNode, 'loading');
+            });
         },
         attach: function (photo, url) {
             var self      = this,
@@ -106,21 +114,23 @@ var Flickr = (function (d) {
             var self = this;
 
             self.getJSON({url: self.url}, function (data) {
-                var feed  = data || [],
-                    photo = feed.photos.photo, link, url, len, i;
+                var feed   = data || [],
+                    photos = feed.photos.photo,
+                    first  = photos.shift(), link, url;
 
-                for (i = 0, len = photo.length; i < len; i += 1) {
-                    link = self.getUrl(photo[i]);
+                link = self.getUrl(first);
+                url  = self.getPhoto(first);
 
-                    if (i === 0) {
-                        url = self.getPhoto(photo[i]);
-                    } else {
-                        url = self.getThumb(photo[i]);
-                    }
+                self.attach(link, url);
+
+                self.loop(photos, function (photo) {
+                    link = self.getUrl(photo);
+                    url  = self.getThumb(photo);
 
                     self.attach(link, url);
-                    self.joined();
-                }
+                });
+
+                self.joined();
             });
         },
         init: function (config) {
