@@ -29,11 +29,11 @@ $apiKey = '';
 $user   = isset($_GET['user']) ? $_GET['user'] : NULL;
 $count  = isset($_GET['count']) ? $_GET['count'] : 10;
 
-$getId  = get_curl('http://api.flickr.com/services/rest/?api_key='.urlencode($apiKey).'&format=json&method=flickr.urls.lookupUser&url=http://www.flickr.com/photos/'.urlencode($user).'/');
+$getId  = get_curl('https://api.flickr.com/services/rest/?api_key='.urlencode($apiKey).'&format=json&method=flickr.urls.lookupUser&url=http://www.flickr.com/photos/'.urlencode($user).'/');
 $data   = jsonp_decode($getId, true);
 $id     = $data['user']['id'];
 
-$getImages = get_curl('http://api.flickr.com/services/rest/?api_key='.urlencode($apiKey).'&format=json&method=flickr.people.getPublicPhotos&user_id='.urlencode($id).'&per_page='.urlencode($count));
+$getImages = get_curl('https://api.flickr.com/services/rest/?api_key='.urlencode($apiKey).'&format=json&method=flickr.people.getPublicPhotos&user_id='.urlencode($id).'&per_page='.urlencode($count));
 $service   = jsonp_decode($getImages, true);
 
 

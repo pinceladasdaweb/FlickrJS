@@ -61,10 +61,10 @@ var Flickr = (function (d) {
             }
         },
         getPhoto: function (photo) {
-            return 'http://farm' + photo.farm + '.static.flickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg';
+            return 'https://farm' + photo.farm + '.static.flickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg';
         },
         getUrl: function (photo) {
-            return 'http://www.flickr.com/photos/' + photo.owner + '/' + photo.id + '/';
+            return 'https://www.flickr.com/photos/' + photo.owner + '/' + photo.id + '/';
         },
         create: function (name, props) {
             var el = d.createElement(name), p;

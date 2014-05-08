@@ -59,13 +59,13 @@ var Flickr = (function (d) {
         },
         getPhoto: function (photo, size) {
             size = size || '';
-            return 'http://farm' + photo.farm + '.static.flickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + size + '.jpg';
+            return 'https://farm' + photo.farm + '.static.flickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + size + '.jpg';
         },
         getThumb: function (photo) {
             return this.getPhoto(photo, '_s');
         },
         getUrl: function (photo) {
-            return 'http://www.flickr.com/photos/' + photo.owner + '/' + photo.id + '/';
+            return 'https://www.flickr.com/photos/' + photo.owner + '/' + photo.id + '/';
         },
         create: function (name, props) {
             var el = d.createElement(name), p;
